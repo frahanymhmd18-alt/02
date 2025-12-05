@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>مبل حاجی خوزه — فروشگاه اینترنتی مبلمان</title>
+
+<!-- فونت -->
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#070707;
+  --panel:#0f0f10;
+  --accent:#b30000;      /* قرمز سلطنتی */
+  --gold:#d4af37;        /* طلایی لوکس */
+  --muted:#bdbdbd;
+  --card:#121212;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:"Vazirmatn",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+  background:var(--bg);
+  color:#fff;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  direction:rtl;
+}
+
+/* header */
+.header {
+  background:linear-gradient(90deg, #2c0000, #000 60%);
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 6px 24px rgba(0,0,0,0.6);
+}
+.logo {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.logo .mark {
+  width:46px;height:46px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#b88f2b);
+  display:flex;align-items:center;justify-content:center;color:#111;font-weight:800;
+  box-shadow:0 6px 18px rgba(212,175,55,0.12);
+}
+.logo .title {
+  font-size:20px;color:var(--gold);font-weight:700;
+}
+.search {
+  flex:1; display:flex; gap:8px; align-items:center;
+}
+.search input {
+  width:100%; padding:10px 12px; border-radius:8px; border:none; outline:none;
+  background:#151515; color:#eee; font-size:15px;
+}
+.search button {
+  background:var(--accent); color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer;
+}
+.header .right-actions {
+  display:flex; gap:8px; align-items:center;
+}
+.icon-btn {
+  background:#111; width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03);
+}
+
+/* top categories */
+.topbar {
+  display:flex; gap:12px; padding:12px 18px; overflow:auto; background:linear-gradient(90deg, rgba(0,0,0,0.2), transparent);
+}
+.topcat {
+  background:#141414;padding:8px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03); color:var(--muted); white-space:nowrap; font-size:14px;
+}
+
+/* main layout */
+.container {
+  max-width:1200px; margin:26px auto; padding:0 16px;
+  display:grid; grid-template-columns: 1fr 320px; gap:22px;
+}
+@media (max-width:980px){
+  .container{grid-template-columns:1fr; padding:0 12px;}
+}
+
+/* product grid (main column) */
+.products-wrap{}
+
+/* sort / breadcrumb */
+.panel {
+  display:flex; justify-content:space-between; align-items:center; gap:10px; color:var(--muted);
+  margin-bottom:14px;
+}
+.breadcrumb{font-size:14px;color:var(--muted)}
+.sort{display:flex; gap:8px; align-items:center}
+.sort select{background:#101010;border:1px solid rgba(255,255,255,0.03);color:#ddd;padding:8px;border-radius:6px}
+
+/* grid */
+.products {
+  display:grid;
+  gap:18px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* product card like digikala */
+.card {
+  background:linear-gradient(180deg,#0f0f10,#0b0b0b);
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.03);
+  transition:transform .18s ease, box-shadow .18s ease;
+}
+.card:hover{transform:translateY(-6px); box-shadow:0 18px 40px rgba(0,0,0,0.6); border-color:rgba(212,175,55,0.08)}
+.card .imgwrap{background:#0b0b0b;padding:14px; display:flex; justify-content:center; align-items:center}
+.card img{width:100%; height:180px; object-fit:cover; border-radius:8px}
+.card .info{padding:12px}
+.card .title{font-weight:600; font-size:16px; color:#fff; min-height:44px}
+.price-row{display:flex; align-items:center; justify-content:space-between; margin-top:10px; gap:8px}
+.price {color:var(--gold); font-weight:800; font-size:18px}
+.oldprice{color:rgba(255,255,255,0.35); text-decoration:line-through; font-size:13px}
+.actions{display:flex; gap:8px; margin-top:12px; align-items:center}
+.btn-view{flex:1; background:transparent; border:1px solid rgba(255,255,255,0.06); color:#fff; padding:10px;border-radius:8px; cursor:pointer; font-weight:600}
+.btn-cart{background:var(--accent); color:#fff; padding:10px 12px; border-radius:8px; cursor:pointer; display:flex; gap:8px; align-items:center}
+
+/* sidebar (right column) */
+.sidebar {
+  background:linear-gradient(180deg,#0f0f10,#090909);
+  padding:14px; border-radius:12px; height:fit-content; border:1px solid rgba(255,255,255,0.03);
+}
+.sidebar h3{margin:0 0 12px;font-size:16px;color:var(--muted)}
+.contact-box{background:#0b0b0b;padding:12px;border-radius:8px}
+.contact-box p{margin:8px 0 0;color:#ddd}
+
+/* footer */
+.footer{padding:30px 16px; text-align:center; color:var(--muted); font-size:14px; margin-top:30px}
+
+/* modal / product detail */
+.modal-bg{position:fixed; inset:0; background: rgba(0,0,0,0.85); display:none; align-items:center; justify-content:center; z-index:200; padding:18px}
+.modal{width:100%; max-width:980px; background:linear-gradient(180deg,#121212,#0e0e0e); border-radius:12px; display:grid; grid-template-columns:1fr 420px; gap:18px; padding:18px; border:2px solid rgba(212,175,55,0.06)}
+@media (max-width:980px){ .modal{grid-template-columns:1fr;}}
+.gallery{background:#0b0b0b;padding:12px;border-radius:10px}
+.main-img{width:100%; height:420px; object-fit:cover; border-radius:8px; border:1px solid rgba(255,255,255,0.03)}
+.thumbs{display:flex; gap:8px; margin-top:10px; overflow:auto}
+.thumb{width:70px; height:70px; object-fit:cover; border-radius:6px; cursor:pointer; border:2px solid transparent}
+.thumb.active{border-color:var(--accent)}
+.detail-side{padding:6px}
+.detail-side h2{margin:0 0 8px;font-size:22px}
+.detail-side .pricebig{font-size:26px;color:var(--gold);font-weight:800;margin:8px 0}
+.detail-side .specs{background:#0b0b0b;padding:12px;border-radius:8px;margin-top:12px;color:#ddd}
+.detail-side .buy-actions{display:flex; gap:10px; margin-top:16px; align-items:center}
+.q-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:#fff;cursor:pointer}
+.q-btn.primary{background:linear-gradient(90deg,var(--gold),#f0d27f); color:#111; font-weight:700}
+
+/* small helpers */
+.center{text-align:center}
+.muted{color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- header -->
+<header class="header">
+  <div class="logo">
+    <div class="mark">م</div>
+    <div>
+      <div class="title">مبل حاجی خوزه</div>
+      <div class="muted" style="font-size:12px">فروشگاه اینترنتی مبلمان</div>
+    </div>
+  </div>
+
+  <div class="search" style="margin-right:12px">
+    <input id="searchInput" placeholder="جستجوی مدل، رنگ، قیمت..." oninput="doSearch()" />
+    <button onclick="doSearch()">جستجو</button>
+  </div>
+
+  <div class="right-actions" style="margin-left:auto">
+    <div class="icon-btn" title="سبد خرید" onclick="openCart()" id="cartBtn">🛒</div>
+    <div class="icon-btn" title="تماس">
+      <a href="tel:09014625461" style="color:inherit;text-decoration:none">📞</a>
+    </div>
+  </div>
+</header>
+
+<!-- categories -->
+<div class="topbar" aria-hidden="false">
+  <div class="topcat">مبلمان راحتی</div>
+  <div class="topcat">مبلمان کلاسیک</div>
+  <div class="topcat">مبلمان مدرن</div>
+  <div class="topcat">مبل تخت‌شو</div>
+  <div class="topcat">کاناپه</div>
+  <div class="topcat">آبکاری و چوب</div>
+</div>
+
+<!-- main -->
+<main class="container">
+
+  <!-- products column -->
+  <section class="products-wrap">
+    <div class="panel">
+      <div class="breadcrumb">خانه / مبلمان</div>
+      <div class="sort">
+        <span class="muted">مرتب‌سازی:</span>
+        <select onchange="sortProducts(this.value)">
+          <option value="default">پیش‌فرض</option>
+          <option value="price-asc">قیمت: کم → زیاد</option>
+          <option value="price-desc">قیمت: زیاد → کم</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="products" class="products" aria-live="polite">
+      <!-- محصولات با JS اضافه میشه -->
+    </div>
+  </section>
+
+  <!-- sidebar -->
+  <aside class="sidebar">
+    <h3>پشتیبانی و سفارش</h3>
+    <div class="contact-box">
+      <p>تلفن: <b>۰۹۰۱۴۶۲۵۴۶۱</b></p>
+      <p class="muted">پاسخگویی ۹ صبح تا ۸ شب</p>
+      <div style="margin-top:12px">
+        <a class="q-btn" href="https://instagram.com/khoze_me" target="_blank">اینستاگرام</a>
+        <a class="q-btn" href="https://t.me/khoze_me" target="_blank">تلگرام</a>
+      </div>
+    </div>
+
+    <h3 style="margin-top:16px">فیلتر قیمت</h3>
+    <div style="display:flex;gap:8px;margin-top:8px">
+      <input id="minP" placeholder="کمترین" style="padding:8px;border-radius:6px;border:none;background:#0b0b0b;color:#fff;width:120px">
+      <input id="maxP" placeholder="بیشترین" style="padding:8px;border-radius:6px;border:none;background:#0b0b0b;color:#fff;width:120px">
+    </div>
+    <button class="q-btn" style="margin-top:10px" onclick="applyPriceFilter()">اعمال</button>
+  </aside>
+
+</main>
+
+<!-- modal for product detail -->
+<div id="modal" class="modal-bg" role="dialog" aria-modal="true">
+  <div class="modal" role="document">
+    <div class="gallery">
+      <img id="mainImg" class="main-img" src="" alt="تصویر محصول">
+      <div id="thumbs" class="thumbs"></div>
+    </div>
+    <div class="detail-side">
+      <h2 id="pTitle">مبل نمونه</h2>
+      <div id="pPrice" class="pricebig detail" style="color:var(--gold); font-size:26px; font-weight:800"></div>
+      <div class="specs" id="pSpecs">
+        • جنس بدنه: چوب روس <br>
+        • پارچه: نانو قابل شستشو <br>
+        • ضمانت: ۲ سال <br>
+        • اسفنج: ۳۰ کیلویی
+      </div>
+
+      <div class="buy-actions">
+        <a id="whBtn" class="q-btn primary" target="_blank">خرید و پرداخت (واتساپ)</a>
+        <button class="q-btn" onclick="addToCart()">افزودن به سبد</button>
+      </div>
+
+      <div style="margin-top:12px">
+        <button class="q-btn" onclick="closeModal()">بستن</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- footer -->
+<div class="footer">© 2025 مبل حاجی خوزه — طراحی شده توسط تو</div>
+
+<script>
+/* ====== داده محصولات ====== 
+ هر محصول: id, title, price (number), old (optional), images[]
+*/
+const productsData = [
+  {id:1, title:"مبل کلاسیک رویال", price:12500000, old:15000000, images:[
+    "https://source.unsplash.com/900x700/?sofa,classic&sig=11",
+    "https://source.unsplash.com/900x700/?sofa,wood&sig=12",
+    "https://source.unsplash.com/900x700/?luxury,sofa&sig=13"
+  ]},
+  {id:2, title:"مبل راحتی لوکس", price:9800000, old:11800000, images:[
+    "https://source.unsplash.com/900x700/?sofa,comfortable&sig=21",
+    "https://source.unsplash.com/900x700/?sofa,livingroom&sig=22"
+  ]},
+  {id:3, title:"مبل مدرن فَشن", price:14600000, images:[
+    "https://source.unsplash.com/900x700/?modern,sofa&sig=31",
+    "https://source.unsplash.com/900x700/?sofa,modern,interior&sig=32"
+  ]},
+  {id:4, title:"مبل کلاسیک ساده", price:18000000, images:[
+    "https://source.unsplash.com/900x700/?sofa,classy&sig=41",
+    "https://source.unsplash.com/900x700/?sofa,classic,interior&sig=42"
+  ]},
+  {id:5, title:"مبل کوچک کاربردی", price:7900000, images:[
+    "https://source.unsplash.com/900x700/?small,sofa&sig=51",
+    "https://source.unsplash.com/900x700/?compact,sofa&sig=52"
+  ]},
+  {id:6, title:"مبل راحتی خانواده", price:21000000, images:[
+    "https://source.unsplash.com/900x700/?family,sofa&sig=61",
+    "https://source.unsplash.com/900x700/?sofa,family,room&sig=62"
+  ]},
+  {id:7, title:"مبل سلطنتی", price:10300000, images:[
+    "https://source.unsplash.com/900x700/?royal,sofa&sig=71",
+    "https://source.unsplash.com/900x700/?sofa,ornate&sig=72"
+  ]},
+  {id:8, title:"مبل لوکس مدرن", price:13500000, images:[
+    "https://source.unsplash.com/900x700/?luxury,sofa&sig=81",
+    "https://source.unsplash.com/900x700/?sofa,luxury,modern&sig=82"
+  ]},
+  {id:9, title:"مبل راحتی ویژه", price:16200000, images:[
+    "https://source.unsplash.com/900x700/?premium,sofa&sig=91",
+    "https://source.unsplash.com/900x700/?sofa,premium&sig=92"
+  ]},
+  {id:10, title:"مبل سفارشی VIP", price:23000000, images:[
+    "https://source.unsplash.com/900x700/?sofa,vip&sig=101",
+    "https://source.unsplash.com/900x700/?sofa,custom&sig=102",
+    "https://source.unsplash.com/900x700/?luxury,furniture&sig=103"
+  ]},
+];
+
+/* state */
+let cart = [];
+
+/* render products */
+function formatPrice(n){
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function renderProducts(list = productsData){
+  const el = document.getElementById("products");
+  el.innerHTML = list.map(p => `
+    <div class="card" role="article">
+      <div class="imgwrap">
+        <img src="${p.images[0]}" alt="${p.title}">
+      </div>
+      <div class="info">
+        <div class="title">${p.title}</div>
+        <div class="price-row">
+          <div>
+            <div class="price">${formatPrice(p.price)} تومان</div>
+            ${p.old?`<div class="oldprice">${formatPrice(p.old)} تومان</div>`:""}
+          </div>
+          <div>
+            <button class="btn-view" onclick="openProduct(${p.id})">مشاهده جزئیات</button>
+            <button class="btn-cart" onclick="buyNow(${p.id})">🛒 افزودن</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+/* open product modal */
+function openProduct(id){
+  const p = productsData.find(x=>x.id===id);
+  if(!p) return;
+  document.getElementById("pTitle").innerText = p.title;
+  document.getElementById("pPrice").innerText = formatPrice(p.price) + " تومان";
+  // thumbs
+  const thumbs = document.getElementById("thumbs");
+  thumbs.innerHTML = p.images.map((src, idx) => `<img class="thumb ${idx===0?'active':''}" src="${src}" onclick="setMain(this, '${src}')">`).join("");
+  setMain(null, p.images[0]);
+  // specs (A = same for all)
+  document.getElementById("pSpecs").innerHTML = "• جنس بدنه: چوب روس<br>• پارچه: نانو قابل شستشو<br>• ضمانت: ۲ سال<br>• اسفنج: ۳۰ کیلویی<br>• ارسال به سراسر کشور";
+  // buy link
+  const msg = encodeURIComponent(`سلام، می‌خوام سفارش بدم: ${p.title} - قیمت ${formatPrice(p.price)} تومان. لطفا راهنمایی کنین.`);
+  document.getElementById("whBtn").href = `https://wa.me/09014625461?text=${msg}`;
+  document.getElementById("modal").style.display = "flex";
+}
+
+/* set main image from thumbs */
+function setMain(el, src){
+  document.getElementById("mainImg").src = src;
+  // active thumb
+  document.querySelectorAll(".thumb").forEach(t=>t.classList.remove("active"));
+  if(el) el.classList.add("active");
+  else {
+    // find thumb by src and set active
+    document.querySelectorAll(".thumb").forEach(t=>{ if(t.src===src) t.classList.add("active");});
+  }
+}
+
+/* close modal */
+function closeModal(){
+  document.getElementById("modal").style.display = "none";
+}
+
+/* buy now (add to cart + open modal) */
+function buyNow(id){
+  const p = productsData.find(x=>x.id===id);
+  if(!p) return;
+  // add to cart simple
+  cart.push({id:p.id, title:p.title, price:p.price});
+  // visually open modal to confirm & provide whatsapp
+  openProduct(id);
+}
+
+/* cart open (simple alert or future modal) */
+function openCart(){
+  if(cart.length===0){ alert("سبد خرید خالی است."); return; }
+  let txt = "محصولات در سبد:\n";
+  cart.forEach((c,i)=> txt += `${i+1}. ${c.title} — ${formatPrice(c.price)} تومان\n`);
+  txt += "\nبرای پرداخت و سفارش، به واتساپ مراجعه کنید.";
+  alert(txt);
+}
+
+/* search */
+function doSearch(){
+  const q = document.getElementById("searchInput").value.trim().toLowerCase();
+  if(!q){ renderProducts(); return; }
+  const filtered = productsData.filter(p => p.title.toLowerCase().includes(q));
+  renderProducts(filtered);
+}
+
+/* sort */
+function sortProducts(mode){
+  let arr = [...productsData];
+  if(mode==='price-asc') arr.sort((a,b)=>a.price-b.price);
+  if(mode==='price-desc') arr.sort((a,b)=>b.price-a.price);
+  renderProducts(arr);
+}
+
+/* price filter */
+function applyPriceFilter(){
+  const min = parseInt(document.getElementById("minP").value.replace(/,/g,''))||0;
+  const max = parseInt(document.getElementById("maxP").value.replace(/,/g,''))||Infinity;
+  const filtered = productsData.filter(p => p.price>=min && p.price<=max);
+  renderProducts(filtered);
+}
+
+/* init */
+renderProducts();
+
+</script>
+</body>
+</html>
